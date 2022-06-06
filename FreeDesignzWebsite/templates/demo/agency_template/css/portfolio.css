@@ -1,0 +1,215 @@
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+
+.navbar {
+	height: 75px;
+}
+
+.navbar a {
+	color: #fff;
+	font-size: 16px;
+}
+
+.navbar a:hover {
+	text-decoration: underline;
+	background: none;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu {
+	background: #F5F5F5;
+}
+
+.navbar-brand>img {
+    display: block;
+    position: relative;
+    top: -22px;
+}
+
+.banner {
+	background-image:url("https://static.pexels.com/photos/21786/pexels-photo.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	width: 100%;
+	height: 60%;
+	top: 75px;
+}
+
+.banner .opacity_overlay {
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.banner .opacity_overlay .info {
+	position: relative;
+	top: 35%;
+}
+
+.banner .opacity_overlay .info h3 {
+	text-align: center;
+	color: white;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	font-size: 22px;
+	margin: 0;
+}
+
+@media screen and (max-width: 620px) {
+.banner .opacity_overlay .info h3 {
+	font-size: 22px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info h3 {
+	font-size: 14px;
+}
+}
+
+.banner .opacity_overlay .info .animation h2 {
+	text-align: center;
+	color: white;
+	font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+	font-size: 62px;
+	margin: 0;
+}
+
+@media screen and (max-width: 620px) {
+.banner .opacity_overlay .info .animation h2 {
+	font-size: 42px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info .animation h2 {
+	font-size: 32px;
+}
+}
+
+.banner .opacity_overlay .info .extra {
+	position: relative;
+    top: 15px;
+}
+
+.banner .opacity_overlay .info .extra button {
+    margin: 0 auto;
+    display: block;
+    padding: 17px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 12px;
+    background: #0088CC;
+    color: white;
+    font-size: 13px;
+    border: none;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info .extra button {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 13px;
+}
+}
+
+.banner .opacity_overlay .info .extra button:hover {
+	background: #0099E5;
+	cursor: pointer;
+}
+
+.breadcrumb {
+	border: 1px solid #e7e7e7;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.14);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    height: 50px;
+}
+
+.images .img {
+	margin-top: 30px;
+}
+
+.images .img img {
+	height: 300px;
+	width: 100%;
+}
+
+.image-detail {
+	position: relative;
+	top: 30px;
+}
+
+.image-detail .image {
+	margin-top: 30px;
+}
+
+.image-detail .image img {
+	width: 100%;
+	height: 400px;
+}
+
+.image-detail .image-info {
+	width: 100%;
+	height: 400px;
+	margin-top: 30px;
+}
+
+@media screen and (max-width: 991px) {
+.image-detail .image-info {
+	height: 270px;
+}
+}
+
+@media screen and (max-width: 773px) {
+.image-detail .image-info {
+	height: 300px;
+}
+}
+
+@media screen and (max-width: 621px) {
+.image-detail .image-info {
+	height: 350px;
+}
+}
+
+@media screen and (max-width: 574px) {
+.image-detail .image-info {
+	height: 400px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.image-detail .image-info {
+	height: 470px;
+}
+}
+
+@media screen and (max-width: 423px) {
+.image-detail .image-info {
+	height: 520px;
+}
+}
+
+.image-detail .image-info p {
+	font-size: 18px;
+	font-weight: 300;
+}
+
+a.fancybox img {
+        border: none;
+        box-shadow: 0 1px 7px rgba(0,0,0,0.6);
+        -o-transform: scale(1,1); -ms-transform: scale(1,1); -moz-transform: scale(1,1); -webkit-transform: scale(1,1); transform: scale(1,1); -o-transition: all 0.2s ease-in-out; -ms-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
+} 
+
+a.fancybox:hover img {
+        position: relative; z-index: 999; -o-transform: scale(1.03,1.03); -ms-transform: scale(1.03,1.03); -moz-transform: scale(1.03,1.03); -webkit-transform: scale(1.03,1.03); transform: scale(1.03,1.03);
+}

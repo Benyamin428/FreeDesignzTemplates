@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Designs - Home Page</title>
+
+<!--These are all the external links-->
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.countTo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+<!--JQuery Code-->
+
+    <script>
+        new WOW().init();
+    </script>
+    
+    <!---------------------------------------------------------------->
+    <!--This allows the header to be changed when the user scrolls down a certain amount of pixels. At the moment it is set to 50px
+    but you can change to whatever amount you want-->
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-inverse').addClass("sticky");
+            } else {
+                $('.navbar-inverse').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-nav>li>a').addClass("sticky");
+            } else {
+                $('.navbar-nav>li>a').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <!--If you want to edit the design of the header, open the style.css file and look for '.header'. Alternatively, there is more CSS code
+    below inside the style tags called .navbar-inverse and .navbar-inverse.sticky-->
+
+<!---------------------------------------------------------------->
+
+
+	<!--This section of code controls the animations, when you click the login tab-->
+
+    <script>
+        $(function() {
+
+            var $formLogin = $('#login-form');
+            var $formLost = $('#lost-form');
+            var $formRegister = $('#register-form');
+            var $divForms = $('#div-forms');
+            var $modalAnimateTime = 300;
+            var $msgAnimateTime = 150;
+            var $msgShowTime = 2000;
+
+            $("form").submit(function() {
+                switch (this.id) {
+                    case "login-form":
+                        var $lg_username = $('#login_username').val();
+                        var $lg_password = $('#login_password').val();
+                        if ($lg_username == "ERROR") {
+                            msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                        } else {
+                            msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                        }
+                        return false;
+                        break;
+                    case "lost-form":
+                        var $ls_email = $('#lost_email').val();
+                        if ($ls_email == "ERROR") {
+                            msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                        } else {
+                            msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                        }
+                        return false;
+                        break;
+                    case "register-form":
+                        var $rg_username = $('#register_username').val();
+                        var $rg_email = $('#register_email').val();
+                        var $rg_password = $('#register_password').val();
+                        if ($rg_username == "ERROR") {
+                            msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                        } else {
+                            msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                        }
+                        return false;
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            });
+
+            $('#login_register_btn').click(function() {
+                modalAnimate($formLogin, $formRegister)
+            });
+            $('#register_login_btn').click(function() {
+                modalAnimate($formRegister, $formLogin);
+            });
+            $('#login_lost_btn').click(function() {
+                modalAnimate($formLogin, $formLost);
+            });
+            $('#lost_login_btn').click(function() {
+                modalAnimate($formLost, $formLogin);
+            });
+            $('#lost_register_btn').click(function() {
+                modalAnimate($formLost, $formRegister);
+            });
+            $('#register_lost_btn').click(function() {
+                modalAnimate($formRegister, $formLost);
+            });
+
+            function modalAnimate($oldForm, $newForm) {
+                var $oldH = $oldForm.height();
+                var $newH = $newForm.height();
+                $divForms.css("height", $oldH);
+                $oldForm.fadeToggle($modalAnimateTime, function() {
+                    $divForms.animate({
+                        height: $newH
+                    }, $modalAnimateTime, function() {
+                        $newForm.fadeToggle($modalAnimateTime);
+                    });
+                });
+            }
+
+            function msgFade($msgId, $msgText) {
+                $msgId.fadeOut($msgAnimateTime, function() {
+                    $(this).text($msgText).fadeIn($msgAnimateTime);
+                });
+            }
+
+            function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+                var $msgOld = $divTag.text();
+                msgFade($textTag, $msgText);
+                $divTag.addClass($divClass);
+                $iconTag.removeClass("glyphicon-chevron-right");
+                $iconTag.addClass($iconClass + " " + $divClass);
+                setTimeout(function() {
+                    msgFade($textTag, $msgOld);
+                    $divTag.removeClass($divClass);
+                    $iconTag.addClass("glyphicon-chevron-right");
+                    $iconTag.removeClass($iconClass + " " + $divClass);
+                }, $msgShowTime);
+            }
+        });
+    </script>
+
+<!---------------------------------------------------------------->
+	<!--This controls the slideshow. It tells the slider the amount of time each slide needs to be-->
+
+	<script>
+        $(document).ready(function() {
+            //Set the carousel options
+            $('#quote-carousel').carousel({
+                pause: true,
+                interval: 4000,
+            });
+        });
+    </script>
+
+<!---------------------------------------------------------------->
+
+	<!--This controls the animations of the counter, which is near to the bottom of the website-->
+
+    <script type="text/javascript">
+        $(function() {
+            var oTop = $('#counter').offset().top - window.innerHeight;
+            $(window).scroll(function() {
+
+                var pTop = $('body').scrollTop();
+                console.log(pTop + ' - ' + oTop);
+                if (pTop > oTop) {
+                    $(window).off("scroll");
+
+                    jQuery(function($) {
+                        // custom formatting example
+                        $('#count').data('countToOptions', {
+                            formatter: function(value, options) {
+                                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                            }
+                        });
+
+                        // start all the timers
+                        $('.timer').each(count);
+
+                        // restart a timer when a button is clicked
+                        $('.restart').click(function(event) {
+                            event.preventDefault();
+                            var target = $(this).data('target');
+                            $(target).countTo('restart');
+                        });
+
+                        function count(options) {
+                            var $this = $(this);
+                            options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                            $this.countTo(options);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+<!---------------------------------------------------------------->
+    
+
+</head>
+	<header>
+    <style>
+        .navbar-inverse {
+            background: transparent;
+        }
+        .navbar-inverse.sticky {
+            background: #000000;
+        }
+    </style>
+    <nav class="navbar-inverse" style="border-radius:0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="font-family: Papyrus, fantasy; margin-top: 5px; font-size: 20px; color: #fff;">Designz</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="about.html">About Us</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog.html">Right Sidebar</a>
+                            </li>
+                            <li><a href="blog2.html">Left Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="blog3.html">No Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                        <li><a href="portfolio.html">Our Portfolio</a>
+                        </li>
+                        <li><a href="contact.html">Contact Us</a>
+                        </li>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">Login</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+    
+    .navbar-inverse .navbar-nav>li>a {
+    	color: #fff;
+    }
+    
+    .navbar-inverse .navbar-nav>li>a:hover {
+    	color: #333;
+    }
+    
+    </style>
+	</header>
+	
+<div class="login">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" align="center">
+                    <img class="img-circle" id="img_logo" src="images/logo.png">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+
+                    <!-- Begin # Login Form -->
+                    <form id="login-form">
+                        <div class="modal-body">
+                            <div id="div-login-msg">
+                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-login-msg">Type your username and password.</span>
+                            </div>
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                            </div>
+                            <div>
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End # Login Form -->
+
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-lost-msg">
+                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-lost-msg">Type your e-mail.</span>
+                            </div>
+                            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+
+                    <!-- Begin | Register Form -->
+                    <form id="register-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-register-msg">Register an account.</span>
+                            </div>
+                            <input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Register Form -->
+
+                </div>
+                <!-- End # DIV Form -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END # MODAL LOGIN -->
+</div>
+
+<body>
+    <div class="banner">
+        <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+            <!-- Overlay -->
+            <div class="overlay"></div>
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#bs-carousel" data-slide-to="1"></li>
+                <li data-target="#bs-carousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item slides active">
+                    <div class="slide-1"></div>
+                    <div class="hero">
+                        <hgroup>
+                            <h1>We are Designz</h1>
+                            <h3>Get started Below to create a great business</h3>
+                        </hgroup>
+                        <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-2"></div>
+                    <div class="hero">
+                        <hgroup>
+                            <h1>We are Smart</h1>
+                            <h3>Simplicity at its best</h3>
+                        </hgroup>
+                        <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-3"></div>
+                    <div class="hero">
+                        <hgroup>
+                            <h1>We are amazing</h1>
+                            <h3>Get start your next awesome project</h3>
+                        </hgroup>
+                        <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content">
+
+            <div class="container marketing">
+
+
+                <!-- START THE FEATURETTES -->
+
+                <hr class="featurette-divider">
+
+                <div class="featurette">
+                	<div class="featurette-container">
+                    	<img class="featurette-image img pull-right wow fadeInRight" src="http://www.critusa.com/wp-content/uploads/2014/02/mac.png">
+                    	<h2 class="featurette-heading wow flipInX">Responsive Design. <span class="text-muted">Works With Any Screen</span></h2>
+                    	<p class="lead wow fadeIn">Lorem ipsum dolor sit amet, cibo alienum ius cu. Scaevola maluisset te qui, cu vim ipsum persequeris consectetuer, adipisci disputationi ea ius.</p>
+                	</div>
+                </div>
+
+            </div>
+
+            <hr class="featurette-divider">
+
+
+            <div class="extra-content">
+            <div class="information">
+                <div class="container">
+                    <div class="row">
+                    	<div class="title">
+                        	<h2 class="wow bounceIn">A Brief Overview</h2>
+                        </div>
+                        <br><br>
+                        <div class="col-md-6">
+                            <div class="blockquote-box clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-home glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                    Home</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                            </div>
+                            <div class="blockquote-box blockquote-primary clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-envelope glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                    Mail</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. <a href="http://www.jquery2dotnet.com/search/label/jquery">jquery2dotnet</a>
+                                </p>
+                            </div>
+                            <div class="blockquote-box blockquote-success clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-user glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                    Users</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="blockquote-box blockquote-info clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-info-sign glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                    Information</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                            </div>
+                            <div class="blockquote-box blockquote-warning clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-signal glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                    Charts</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                            </div>
+                            <div class="blockquote-box blockquote-danger clearfix">
+                                <div class="square pull-left">
+                                    <span class="glyphicon glyphicon-globe glyphicon-lg"></span>
+                                </div>
+                                <h4>
+                   Global</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="container marketing">
+
+
+                    <!-- START THE ANOTHER FEATURETTES -->
+
+                    <hr class="featurette-divider">
+
+                    <div class="featurette">
+                    	<div class="featurette-container">
+                    	    <img class="featurette-image img pull-left wow fadeInLeft" src="https://ssl.sitew.org/assets/welcome/landing/illustrations/img1-6a68049a54b80fd4f7b82a1ee767dafd.png">
+                        	<h2 class="featurette-heading wow flipInX">Easy To <span class="text-muted">Modify</span></h2>
+                        	<p class="lead">Lorem ipsum dolor sit amet, cibo alienum ius cu. Scaevola maluisset te qui, cu vim ipsum persequeris consectetuer, adipisci disputationi ea ius.</p>
+                   		</div>
+                    </div>
+
+                </div>
+
+                <hr class="featurette-divider">
+
+                <div class="about">
+                    <section class="success" id="about">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h2 class="wow fadeInDown" style="font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif; font-size: 42px;">ABOUT US</h2>
+                                    <hr class="star-light">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-lg-offset-1">
+                                    <p class="wow fadeInLeft" style="font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif; font-size: 16px; text-align:center;">Lorem ipsum dolor sit amet, illud sententiae pri in, eu zril forensibus sententiae cum. Quo perpetua qualisque ne. Ius labore senserit no. Et his mundi accumsan, ea elit sadipscing pro. Dolor vivendo constituto et mea, eius mutat augue cum ex, eum an choro audire. Clita iudicabit elaboraret ut eos. Ei aeterno convenire quo, per te quis mollis, dico everti eirmod nec id.</p>
+                                </div>
+                                <div class="col-lg-5">
+                                    <p class="wow fadeInRight" style="font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif; font-size: 16px; text-align:center;">Lorem ipsum dolor sit amet, illud sententiae pri in, eu zril forensibus sententiae cum. Quo perpetua qualisque ne. Ius labore senserit no. Et his mundi accumsan, ea elit sadipscing pro. Dolor vivendo constituto et mea, eius mutat augue cum ex, eum an choro audire. Clita iudicabit elaboraret ut eos. Ei aeterno convenire quo, per te quis mollis, dico everti eirmod nec id.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <hr class="featurette-divider">
+
+                <div class="container marketing">
+
+                    <!-- Three columns of text below the carousel -->
+                    <div class="row">
+                        <div class="col-md-4 text-center wow bounceInLeft">
+                            <img class="img-circle" src="http://jamiespcsolutions.co.uk/wp-content/uploads/2015/11/1237883-540235281.jpg" height="140px" width="140px">
+                            <h2>Lorem Ipsum</h2>
+                            <p>Lorem ipsum dolor sit amet, illud sententiae pri in, eu zril forensibus sententiae cum.</p>
+                            <p><a class="btn btn-default" href="#">View details</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center wow bounceIn">
+                            <img class="img-circle" src="http://www.artdiscount.co.uk/media/catalog/category/pencils-2_8.jpg" height="140px" width="140px">
+                            <h2>Lorem Ipsum</h2>
+                            <p>Lorem ipsum dolor sit amet, illud sententiae pri in, eu zril forensibus sententiae cum.</p>
+                            <p><a class="btn btn-default" href="#">View details</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center wow bounceInRight">
+                            <img class="img-circle" src="http://www.officexpress.co.uk/wp-content/uploads/2014/03/paper.jpg" height="140px" width="140px">
+                            <h2>Lorem Ipsum</h2>
+                            <p>Lorem ipsum dolor sit amet, illud sententiae pri in, eu zril forensibus sententiae cum.</p>
+                            <p><a class="btn btn-default" href="#">View details</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                </div>
+
+                <hr class="featurette-divider">
+
+                <div class="more-info">
+
+                    <div class="row">
+
+                        <div class="col-md-6 center col-padding" style="height: 400px; background:url(https://wallpaperscraft.com/image/computer_keyboard_mouse_laptop_mac_apple_66734_2560x1024.jpg) 50% 50% / cover no-repeat;">
+                            <div></div>
+                        </div>
+
+                        <div class="col-md-6 center col-padding" style="height: 400px; background-color: rgb(245, 245, 245);">
+                            <div>
+                                <div class="heading">
+                                    <h3 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;">What We Do</h3>
+                                </div>
+								
+								<br>
+								
+                                <p class="content-body">Lorem ipsum dolor sit amet, eu postulant contentiones nam, per ea congue dicunt labitur, et est utamur imperdiet. Iisque singulis omittantur ius ne. Ea illum prodesset sit, cu per veri tibique quaerendum. Ad sit nibh quodsi partiendo, no iracundia quaerendum ullamcorper vix.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="counter">
+                        <div class="container-fluid" style="padding: 0;">
+                            <div class="col-md-3 col-sm-6" style="height: 326px; background-color: rgb(81, 88, 117);">
+                                <b class="timer" id="count" data-to="5000" data-speed="3000"></b>
+                                <h3>Clients</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-6" style="height: 326px; background-color: rgb(87, 111, 158);">
+                                <b class="timer" id="count" data-to="1000" data-speed="3000"></b>
+                                <h3>Completed Work</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-6" style="height: 326px; background-color: rgb(102, 151, 185);">
+                                <b class="timer" id="count" data-to="10000" data-speed="3000"></b>
+                                <h3>Lines of Code</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-6" style="height: 326px; background-color: rgb(136, 195, 216);">
+                                <b class="timer" id="count" data-to="300" data-speed="3000"></b>
+                                <h3>Cups of Coffee</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="our-business">
+
+                <div class="container" id="features">
+                    <div class="row">
+                        <div class="col-md-4 feature wow slideInLeft">
+                            <i class="glyphicon glyphicon-picture"></i>
+                            <h3>Lorem ipsum dolor</h3>
+                            <div class="title_border"></div>
+                            <p>Praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos</p>
+                        </div>
+                        <div class="col-md-4 feature">
+                            <i class="glyphicon glyphicon-globe"></i>
+                            <h3>Lorem ipsum dolor</h3>
+                            <div class="title_border"></div>
+                            <p>Praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos</p>
+                        </div>
+                        <div class="col-md-4 feature wow slideInRight">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <h3>Lorem ipsum dolor</h3>
+                            <div class="title_border"></div>
+                            <p>Praediximus enim Montium sub ipso vivendi termino his vocabulis appellatos fabricarum culpasse tribunos ut adminicula futurae molitioni pollicitos</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+			<br><br><br>
+
+            <div class="portfolio">
+                <div class="container-fluid">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image1.jpg" class="img-responsive">
+						</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image2.jpg" class="img-responsive">
+						</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image3.jpg" class="img-responsive">
+						</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image4.jpg" class="img-responsive">
+						</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image5.jpg" class="img-responsive">
+						</div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+  						<div class="img">
+							<img src="images/image6.jpg" class="img-responsive">
+						</div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="quotes">
+                <section id="carousel">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="quote"><i class="fa fa-quote-left fa-4x"></i>
+                                </div>
+                                <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                                    <!-- Carousel indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+                                        <li data-target="#fade-quote-carousel" data-slide-to="2"></li>
+                                    </ol>
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                        <div class="active item">
+                                            <blockquote>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                            </blockquote>
+                                            <div class="profile-circle" style="background-color: rgba(0,0,0,.2);"></div>
+                                        </div>
+                                        <div class="item">
+                                            <blockquote>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                            </blockquote>
+                                            <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
+                                        </div>
+                                        <div class="item">
+                                            <blockquote>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                            </blockquote>
+                                            <div class="profile-circle" style="background-color: rgba(145,169,216,.2);"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="message">
+                <section class="call-to-action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 text-right m-text-center">
+                                <h1>Ready to Change Your Business?</h1>
+                            </div>
+                            <div class="col-md-4 col-sm-4 m-text-center">
+                                <a class="btn btn-white">Take the Next Step</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="subscribe">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <div class="thumbnail center well well-small text-center">
+                                <h2>Newsletter</h2>
+
+                                <p>Subscribe to our weekly Newsletter and stay tuned.</p>
+
+                                <form action="" method="post">
+                                    <div class="input-prepend"><span class="add-on"><i class="fa fa-envelope"></i></span>
+                                        <input type="text" id="" name="" placeholder="your@email.com" required>
+                                    </div>
+                                    <br />
+                                    <input type="submit" value="Subscribe Now!" class="btn btn-large" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Free<span>Designz</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Free Designz &copy; 2015</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>Trafalgar Square</span> London, United Kingdom</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1 555 123456</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+</body>
+
+</html>

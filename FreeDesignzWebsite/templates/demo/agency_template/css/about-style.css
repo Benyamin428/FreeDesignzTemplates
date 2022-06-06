@@ -1,0 +1,190 @@
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+
+.navbar {
+	height: 75px;
+}
+
+.navbar a {
+	color: #fff;
+	font-size: 16px;
+}
+
+.navbar a:hover {
+	text-decoration: underline;
+	background: none;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu {
+	background: #F5F5F5;
+}
+
+.navbar-brand>img {
+    display: block;
+    position: relative;
+    top: -22px;
+}
+
+.banner {
+	background-image:url("https://static.pexels.com/photos/18104/pexels-photo.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	width: 100%;
+	height: 60%;
+	top: 75px;
+}
+
+.banner .opacity_overlay {
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.banner .opacity_overlay .info {
+	position: relative;
+	top: 35%;
+}
+
+.banner .opacity_overlay .info h3 {
+	text-align: center;
+	color: white;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	font-size: 22px;
+	margin: 0;
+}
+
+@media screen and (max-width: 620px) {
+.banner .opacity_overlay .info h3 {
+	font-size: 22px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info h3 {
+	font-size: 14px;
+}
+}
+
+.banner .opacity_overlay .info .animation h2 {
+	text-align: center;
+	color: white;
+	font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+	font-size: 62px;
+	margin: 0;
+}
+
+@media screen and (max-width: 620px) {
+.banner .opacity_overlay .info .animation h2 {
+	font-size: 42px;
+}
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info .animation h2 {
+	font-size: 32px;
+}
+}
+
+.banner .opacity_overlay .info .extra {
+	position: relative;
+    top: 15px;
+}
+
+.banner .opacity_overlay .info .extra button {
+    margin: 0 auto;
+    display: block;
+    padding: 17px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 12px;
+    background: #0088CC;
+    color: white;
+    font-size: 13px;
+    border: none;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+.banner .opacity_overlay .info .extra button {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 13px;
+}
+}
+
+.banner .opacity_overlay .info .extra button:hover {
+	background: #0099E5;
+	cursor: pointer;
+}
+
+.breadcrumb {
+	border: 1px solid #e7e7e7;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.14);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    height: 50px;
+}
+
+.information .about p {
+	font-family: "PT Sans", sans-serif;
+}
+
+.information .image img {
+	height: 330px;
+	margin-top: 40px;
+}
+
+.employers img {
+	height: 250px;
+	width: 100%;
+}
+
+.employers img:hover {
+	opacity: 0.4;
+	cursor: pointer;
+}
+
+.employers .employer {
+	border: 1px solid #e5e5e5;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.14);
+	margin-top: 30px;
+}
+
+.employers hr {
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+
+.employers h3 {
+	font-size: 24px;
+	padding-left: 10px;
+}
+
+.employers h4 {
+	font-size: 18px;
+	padding-left: 10px;
+}
+
+.employers h5 {
+	font-size: 11px;
+	padding-left: 10px;
+}
+
+.employers p {
+	padding: 8px
+}
+
+@media screen and (max-width: 500px) { 
+.employers .col-xs-6 {
+	width: 100%;
+}
+}

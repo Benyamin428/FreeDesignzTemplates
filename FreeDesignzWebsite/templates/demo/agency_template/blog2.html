@@ -1,0 +1,611 @@
+<html>
+	<head>
+	
+	<title>Designs - Blog</title>
+	
+		<link rel="stylesheet" type="text/css" href="css/blog.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+	    <link rel="stylesheet" type="text/css" href="css/login.css">
+	    <link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+    	<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <script>
+              new WOW().init();
+        </script>
+        
+        <!---------------------------------------------------------------->
+    <!--This allows the header to be changed when the user scrolls down a certain amount of pixels. At the moment it is set to 50px
+    but you can change to whatever amount you want-->
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-inverse').addClass("sticky");
+            } else {
+                $('.navbar-inverse').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-nav>li>a').addClass("sticky");
+            } else {
+                $('.navbar-nav>li>a').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <!--If you want to edit the design of the header, open the style.css file and look for '.header'. Alternatively, there is more CSS code
+    below inside the style tags called .navbar-inverse and .navbar-inverse.sticky-->
+
+<!---------------------------------------------------------------->
+
+        <script>
+        	$(function() {
+    
+    var $formLogin = $('#login-form');
+    var $formLost = $('#lost-form');
+    var $formRegister = $('#register-form');
+    var $divForms = $('#div-forms');
+    var $modalAnimateTime = 300;
+    var $msgAnimateTime = 150;
+    var $msgShowTime = 2000;
+
+    $("form").submit(function () {
+        switch(this.id) {
+            case "login-form":
+                var $lg_username=$('#login_username').val();
+                var $lg_password=$('#login_password').val();
+                if ($lg_username == "ERROR") {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                } else {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                }
+                return false;
+                break;
+            case "lost-form":
+                var $ls_email=$('#lost_email').val();
+                if ($ls_email == "ERROR") {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                } else {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                }
+                return false;
+                break;
+            case "register-form":
+                var $rg_username=$('#register_username').val();
+                var $rg_email=$('#register_email').val();
+                var $rg_password=$('#register_password').val();
+                if ($rg_username == "ERROR") {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                } else {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                }
+                return false;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    });
+    
+    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+    $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+    $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+    $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+    
+    function modalAnimate ($oldForm, $newForm) {
+        var $oldH = $oldForm.height();
+        var $newH = $newForm.height();
+        $divForms.css("height",$oldH);
+        $oldForm.fadeToggle($modalAnimateTime, function(){
+            $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                $newForm.fadeToggle($modalAnimateTime);
+            });
+        });
+    }
+    
+    function msgFade ($msgId, $msgText) {
+        $msgId.fadeOut($msgAnimateTime, function() {
+            $(this).text($msgText).fadeIn($msgAnimateTime);
+        });
+    }
+    
+    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+        var $msgOld = $divTag.text();
+        msgFade($textTag, $msgText);
+        $divTag.addClass($divClass);
+        $iconTag.removeClass("glyphicon-chevron-right");
+        $iconTag.addClass($iconClass + " " + $divClass);
+        setTimeout(function() {
+            msgFade($textTag, $msgOld);
+            $divTag.removeClass($divClass);
+            $iconTag.addClass("glyphicon-chevron-right");
+            $iconTag.removeClass($iconClass + " " + $divClass);
+  		}, $msgShowTime);
+    }
+});
+        </script>
+
+	</head>
+	<header>
+    <style>
+        .navbar-inverse {
+            background: transparent;
+        }
+        .navbar-inverse.sticky {
+            background: #000000;
+        }
+    </style>
+    <nav class="navbar-inverse" style="border-radius:0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="font-family: Papyrus, fantasy; margin-top: 5px; font-size: 20px; color: #fff;">Designz</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="about.html">About Us</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog.html">Right Sidebar</a>
+                            </li>
+                            <li><a href="blog2.html">Left Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="blog3.html">No Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                        <li><a href="portfolio.html">Our Portfolio</a>
+                        </li>
+                        <li><a href="contact.html">Contact Us</a>
+                        </li>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">Login</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+    
+    .navbar-inverse .navbar-nav>li>a {
+    	color: #fff;
+    }
+    
+    .navbar-inverse .navbar-nav>li>a:hover {
+    	color: #333;
+    }
+    
+    </style>
+	</header>
+	
+<div class="login">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" align="center">
+                    <img class="img-circle" id="img_logo" src="images/logo.png">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+
+                    <!-- Begin # Login Form -->
+                    <form id="login-form">
+                        <div class="modal-body">
+                            <div id="div-login-msg">
+                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-login-msg">Type your username and password.</span>
+                            </div>
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                            </div>
+                            <div>
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End # Login Form -->
+
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-lost-msg">
+                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-lost-msg">Type your e-mail.</span>
+                            </div>
+                            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+
+                    <!-- Begin | Register Form -->
+                    <form id="register-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-register-msg">Register an account.</span>
+                            </div>
+                            <input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Register Form -->
+
+                </div>
+                <!-- End # DIV Form -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END # MODAL LOGIN -->
+</div>
+
+	<body>
+		<div class="banner">
+			<div class="opacity_overlay">
+				<div class="info">
+					<h3><i class="fa fa-minus slideInLeft animated"></i>&nbsp; WELCOME TO &nbsp;<i class="fa fa-minus slideInRight animated"></i></h3>
+					<div class="animation slideInUp animated"><h2>OUR BLOG</h2></div>
+					<div class="extra fadeIn animated">
+						<button type="button" id="proceed" style="display: none;">Get Started Now</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="breadcrumb">
+
+		</div>
+		
+	<div class="blog">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-md-3 col-sm-4">
+					<div class="sidebar">
+						<div class="media">
+						<h2>RECENT POSTS</h2>
+						<br>
+ 							 <div class="media-left media-middle">
+    							<a href="#">
+      								<img class="media-object" src="http://thumbs.dreamstime.com/m/writing-business-people-hand-pencil-finance-accounting-background-35580129.jpg" alt="">
+   								</a>
+ 							 </div>
+  							<div class="media-body">
+  		 						 <h4 class="media-heading">Post about Company</h4>
+    							 <h5>Dec 12 | 3 Comments</h5>
+    							 <hr>
+    							 <a href="#">Read More</a>
+  							</div>
+						</div>
+						<div class="media">
+ 							 <div class="media-left media-middle">
+    							<a href="#">
+      								<img class="media-object" src="http://thumbs.dreamstime.com/m/writing-business-people-hand-pencil-finance-accounting-background-35580129.jpg" alt="">
+   								</a>
+ 							 </div>
+  							<div class="media-body">
+  		 						 <h4 class="media-heading">Post about Company</h4>
+    							 <h5>Dec 12 | 3 Comments</h5>
+    							 <hr>
+    							 <a href="#">Read More</a>
+  							</div>
+						</div>
+						<div class="media">
+ 							 <div class="media-left media-middle">
+    							<a href="#">
+      								<img class="media-object" src="http://thumbs.dreamstime.com/m/writing-business-people-hand-pencil-finance-accounting-background-35580129.jpg" alt="">
+   								</a>
+ 							 </div>
+  							<div class="media-body">
+  		 						 <h4 class="media-heading">Post about Company</h4>
+    							 <h5>Dec 12 | 3 Comments</h5>
+    							 <hr>
+    							 <a href="#">Read More</a>
+  							</div>
+						</div>
+						<hr>
+						<div class="categories">
+							<h2>CATEGORIES</h2>
+								<hr>
+								<ul>
+									<li>Business</li>
+									<hr>
+									<li>Events</li>
+									<hr>
+									<li>News</li>
+									<hr>
+									<li>Progress</li>
+									<hr>
+									<li>Challenges</li>
+									<hr>
+								</ul>
+						</div>
+						<hr>
+
+						<h2>INSTAGRAM</h2>
+						<hr>
+						<div class="row">
+  							<div class="thumbnails">
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="https://www.follettcommunity.com/media/bfcyxcsk.jpg" alt="">
+    								</a>
+  								</div>
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="http://onicmedia.com/wp-content/uploads/2015/10/photodune-10745569-group-of-business-people-meeting-l1-90x90.jpg" alt="">
+    								</a>
+  								</div>
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="https://t1.ftcdn.net/jpg/00/72/96/48/240_F_72964892_1vEzY6VreAg1KKl6QVGVqTbStEY7p1Vh.jpg" alt="">
+    								</a>
+  								</div>
+							</div>
+						</div>
+						
+						<br>
+						
+						<div class="row">
+  							<div class="thumbnails">
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="https://www.follettcommunity.com/media/bfcyxcsk.jpg" alt="">
+    								</a>
+  								</div>
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="http://onicmedia.com/wp-content/uploads/2015/10/photodune-10745569-group-of-business-people-meeting-l1-90x90.jpg" alt="">
+    								</a>
+  								</div>
+  								<div class="col-md-3 col-sm-3">
+    								<a href="#">
+     									 <img src="https://t1.ftcdn.net/jpg/00/72/96/48/240_F_72964892_1vEzY6VreAg1KKl6QVGVqTbStEY7p1Vh.jpg" alt="">
+    								</a>
+  								</div>
+							</div>
+						</div>
+						
+						<hr>
+						<div class="categories">
+							<h2>ARCHIVES</h2>
+								<hr>
+								<ul>
+									<li><a href="#">December <span>(2)</span></a></li>
+									<hr>
+									<li><a href="#">November <span>(5)</span></a></li>
+									<hr>
+									<li><a href="#">October <span>(7)</span></a></li>
+									<hr>
+									<li><a href="#">September <span>(3)</span></a></li>
+									<hr>
+									<li><a href="#">August <span>(6)</span></a></li>
+									<hr>
+								</ul>
+						</div>
+						
+						<div class="quote">
+							<h2>QUOTE</h2>
+							<hr>
+							<div class="wrapper">
+								<p>Lorem ipsum dolor sit amet, nec cu enim senserit convenire, oratio altera definitiones ad has.</p>
+							</div>
+						</div>
+						
+						<hr>
+						
+					</div>
+				</div>
+			
+				<div class="col-md-9 col-sm-8">
+					<div class="post">
+						<div class="post-date">
+							<h4>Dec</h4>
+							<h3>25</h3>
+							<h5>2015</h5>
+						</div>
+					<div class="image">
+						<img src="https://static.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg" class="img-responsive">
+					</div>
+					</div>
+
+					<div class="post-details">
+						<h2>Our Collection</h2>
+						<h3>By James Henry | Business Coordinator | 10 Comments</h3>
+						<p>Lorem ipsum dolor sit amet, elitr feugait nominati ne sit, consul accusata delicatissimi an vix, ut vim fugit placerat percipitur. Mea admodum consulatu an. Quo iudico integre in. Cu his delectus percipitur neglegentur, assum debet commune vis ut. Ius habeo labitur officiis an, ad facilis vivendum verterem cum.</p>
+						<a class="btn btn-default" href="#">MORE </a>
+					</div>
+					
+					<br><br>
+					
+					<div class="post">
+						<div class="post-date">
+							<h4>Dec</h4>
+							<h3>25</h3>
+							<h5>2015</h5>
+						</div>
+					<div class="image">
+						<img src="https://static.pexels.com/photos/12569/photo-1444090542259-0af8fa96557e.jpeg" class="img-responsive">
+					</div>
+					</div>
+
+					<div class="post-details">
+						<h2>Our Collection</h2>
+						<h3>By James Henry | Business Coordinator | 10 Comments</h3>
+						<p>Lorem ipsum dolor sit amet, elitr feugait nominati ne sit, consul accusata delicatissimi an vix, ut vim fugit placerat percipitur. Mea admodum consulatu an. Quo iudico integre in. Cu his delectus percipitur neglegentur, assum debet commune vis ut. Ius habeo labitur officiis an, ad facilis vivendum verterem cum.</p>
+						<a class="btn btn-default" href="#">MORE </a>
+					</div>
+					
+					<br><br>
+					
+					<div class="post">
+						<div class="post-date">
+							<h4>Dec</h4>
+							<h3>25</h3>
+							<h5>2015</h5>
+						</div>
+					<div class="video">
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-mIX9hAEGrQ"></iframe>
+					</div>
+					</div>
+
+					<div class="post-details">
+						<h2>Our Collection</h2>
+						<h3>By James Henry | Business Coordinator | 10 Comments</h3>
+						<p>Lorem ipsum dolor sit amet, elitr feugait nominati ne sit, consul accusata delicatissimi an vix, ut vim fugit placerat percipitur. Mea admodum consulatu an. Quo iudico integre in. Cu his delectus percipitur neglegentur, assum debet commune vis ut. Ius habeo labitur officiis an, ad facilis vivendum verterem cum.</p>
+						<a class="btn btn-default" href="#">MORE </a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br><br>
+	
+	<div class="container">
+		<div class="col-md-9 col-md-offset-3">
+			<nav>
+  				<ul class="pagination">
+    				<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+   					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+   					<li><a href="#">2</a></li>
+   					<li><a href="#">3</a></li>
+   					<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+  				</ul>
+			</nav>
+		</div>
+	</div>
+	
+		<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Free<span>Designz</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Free Designz &copy; 2015</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>Trafalgar Square</span> London, United Kingdom</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1 555 123456</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+
+		
+	</body>
+	</html>

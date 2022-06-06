@@ -1,0 +1,430 @@
+<html>
+	<head>
+	
+	<title>Designs - Members</title>
+	
+		<link rel="stylesheet" type="text/css" href="css/member.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+	    <link rel="stylesheet" type="text/css" href="css/login.css">
+	    <link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+    	<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <script>
+              new WOW().init();
+        </script>
+        
+        <!---------------------------------------------------------------->
+    <!--This allows the header to be changed when the user scrolls down a certain amount of pixels. At the moment it is set to 50px
+    but you can change to whatever amount you want-->
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-inverse').addClass("sticky");
+            } else {
+                $('.navbar-inverse').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-nav>li>a').addClass("sticky");
+            } else {
+                $('.navbar-nav>li>a').removeClass("sticky");
+            }
+        });
+    </script>
+    
+    <!--If you want to edit the design of the header, open the style.css file and look for '.header'. Alternatively, there is more CSS code
+    below inside the style tags called .navbar-inverse and .navbar-inverse.sticky-->
+
+<!---------------------------------------------------------------->
+
+        <script>
+        	$(function() {
+    
+    var $formLogin = $('#login-form');
+    var $formLost = $('#lost-form');
+    var $formRegister = $('#register-form');
+    var $divForms = $('#div-forms');
+    var $modalAnimateTime = 300;
+    var $msgAnimateTime = 150;
+    var $msgShowTime = 2000;
+
+    $("form").submit(function () {
+        switch(this.id) {
+            case "login-form":
+                var $lg_username=$('#login_username').val();
+                var $lg_password=$('#login_password').val();
+                if ($lg_username == "ERROR") {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                } else {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                }
+                return false;
+                break;
+            case "lost-form":
+                var $ls_email=$('#lost_email').val();
+                if ($ls_email == "ERROR") {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                } else {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                }
+                return false;
+                break;
+            case "register-form":
+                var $rg_username=$('#register_username').val();
+                var $rg_email=$('#register_email').val();
+                var $rg_password=$('#register_password').val();
+                if ($rg_username == "ERROR") {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                } else {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                }
+                return false;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    });
+    
+    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+    $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+    $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+    $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+    
+    function modalAnimate ($oldForm, $newForm) {
+        var $oldH = $oldForm.height();
+        var $newH = $newForm.height();
+        $divForms.css("height",$oldH);
+        $oldForm.fadeToggle($modalAnimateTime, function(){
+            $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                $newForm.fadeToggle($modalAnimateTime);
+            });
+        });
+    }
+    
+    function msgFade ($msgId, $msgText) {
+        $msgId.fadeOut($msgAnimateTime, function() {
+            $(this).text($msgText).fadeIn($msgAnimateTime);
+        });
+    }
+    
+    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+        var $msgOld = $divTag.text();
+        msgFade($textTag, $msgText);
+        $divTag.addClass($divClass);
+        $iconTag.removeClass("glyphicon-chevron-right");
+        $iconTag.addClass($iconClass + " " + $divClass);
+        setTimeout(function() {
+            msgFade($textTag, $msgOld);
+            $divTag.removeClass($divClass);
+            $iconTag.addClass("glyphicon-chevron-right");
+            $iconTag.removeClass($iconClass + " " + $divClass);
+  		}, $msgShowTime);
+    }
+});
+        </script>
+
+	</head>
+	<header>
+    <style>
+        .navbar-inverse {
+            background: transparent;
+        }
+        .navbar-inverse.sticky {
+            background: #000000;
+        }
+    </style>
+    <nav class="navbar-inverse" style="border-radius:0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="font-family: Papyrus, fantasy; margin-top: 5px; font-size: 20px; color: #fff;">Designz</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="about.html">About Us</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog.html">Right Sidebar</a>
+                            </li>
+                            <li><a href="blog2.html">Left Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="blog3.html">No Sidebar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                        <li><a href="portfolio.html">Our Portfolio</a>
+                        </li>
+                        <li><a href="contact.html">Contact Us</a>
+                        </li>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal" style="font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">Login</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+    
+    .navbar-inverse .navbar-nav>li>a {
+    	color: #fff;
+    }
+    
+    .navbar-inverse .navbar-nav>li>a:hover {
+    	color: #333;
+    }
+    
+    </style>
+	</header>
+	
+<div class="login">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" align="center">
+                    <img class="img-circle" id="img_logo" src="images/logo.png">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+
+                    <!-- Begin # Login Form -->
+                    <form id="login-form">
+                        <div class="modal-body">
+                            <div id="div-login-msg">
+                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-login-msg">Type your username and password.</span>
+                            </div>
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                            </div>
+                            <div>
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End # Login Form -->
+
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-lost-msg">
+                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-lost-msg">Type your e-mail.</span>
+                            </div>
+                            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+
+                    <!-- Begin | Register Form -->
+                    <form id="register-form" style="display:none;">
+                        <div class="modal-body">
+                            <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-register-msg">Register an account.</span>
+                            </div>
+                            <input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End | Register Form -->
+
+                </div>
+                <!-- End # DIV Form -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END # MODAL LOGIN -->
+</div>
+	
+	<body>
+		<div class="banner">
+			<div class="opacity_overlay">
+				<div class="info">
+					<h3><i class="fa fa-minus slideInLeft animated"></i>&nbsp; WHO WE ARE AND &nbsp;<i class="fa fa-minus slideInRight animated"></i></h3>
+					<div class="animation slideInUp animated"><h2>OUR TEAM</h2></div>
+					<div class="extra fadeIn animated">
+						<button type="button" id="proceed" style="display: none;">Get Started Now</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="breadcrumb">
+
+		</div>
+		
+		<br><br>
+		
+		<div class="member">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="employer">
+							<img src="http://www.welshandassociates.net/images/employers_6274933.jpg" class="img-responsive">
+							<h4>John Doe</h4>
+							<hr>
+							<h5>CEO and Founder</h5>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis lacinia enim vel blandit. In placerat, ex nec sodales elementum.</p>
+						</div>
+					</div>
+					
+					<div class="heading">
+						<h2>JOHN DOE</h2>
+						<hr>					
+					</div>
+
+					<div class="col-md-4">
+						<div class="information">
+							<p>Lorem ipsum dolor sit amet, nam id idque recusabo, offendit pericula et has, eu cum munere aeterno. Harum labores deterruisset ei nam, te omnes omnium pertinax qui. Primis postulant delicatissimi et sit. Mea ex populo omittantur efficiantur, eu sed nemore imperdiet. Malorum legendos at sea. Eum doming mollis no, dicit tractatos per in.</p>
+							<p>Qui et doming disputationi, pro elit dolorem ei, no modus molestiae vix. Vel eu possim vidisse. Quo hinc cibo libris no, eu duo solum labore signiferumque. Qui congue eloquentiam ad, cetero graecis lobortis ex vel. Cum ea minim molestiae urbanitas, sed graeci dissentiet no. Nec te mutat nulla, facete animal ponderum mei ne.</p>
+							<p>Mea an nulla fabulas offendit, enim dicant omnesque eu vel, pri atqui nulla reprimique in. Ad cum docendi senserit, pertinax scribentur cu duo. Semper reprimique ne vel. Id nec doctus fierent fabellas. Facilisi mediocrem eu sit. Usu an prima posse.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="more-info">
+							<p>Lorem ipsum dolor sit amet, nam id idque recusabo, offendit pericula et has, eu cum munere aeterno. Harum labores deterruisset ei nam, te omnes omnium pertinax qui. Primis postulant delicatissimi et sit. Mea ex populo omittantur efficiantur, eu sed nemore imperdiet. Malorum legendos at sea. Eum doming mollis no, dicit tractatos per in.</p>
+							<p>Qui et doming disputationi, pro elit dolorem ei, no modus molestiae vix. Vel eu possim vidisse. Quo hinc cibo libris no, eu duo solum labore signiferumque. Qui congue eloquentiam ad, cetero graecis lobortis ex vel. Cum ea minim molestiae urbanitas, sed graeci dissentiet no. Nec te mutat nulla, facete animal ponderum mei ne.</p>
+							<p>Mea an nulla fabulas offendit, enim dicant omnesque eu vel, pri atqui nulla reprimique in. Ad cum docendi senserit, pertinax scribentur cu duo. Semper reprimique ne vel. Id nec doctus fierent fabellas. Facilisi mediocrem eu sit. Usu an prima posse.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Free<span>Designz</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Free Designz &copy; 2015</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>Trafalgar Square</span> London, United Kingdom</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1 555 123456</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+
+		
+	</body>
+	
+	</html>
